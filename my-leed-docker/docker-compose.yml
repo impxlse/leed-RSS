@@ -4,3 +4,7 @@ services:
     image: leed-php-apache 
     ports:
       - "8080:80"
+  leed-database:
+    image: leed-database
+    ports:
+      - "3306:3306"
