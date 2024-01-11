@@ -1,0 +1,6 @@
+version: '3'
+services:
+  leed-app:
+    image: leed-php-apache 
+    ports:
+      - "8080:80"
