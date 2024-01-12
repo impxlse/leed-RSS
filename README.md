@@ -83,7 +83,9 @@ MYSQL_PASSWORD=leedpwd
 MYSQL_ROOT_PASSWORD=rootpwd
 ```
 
-
+## Source
+Je remercie Timothé Taboada pour m'avoir aidé à comprendre comment réussir à effectuer une requete http pour remplir le formulaire demandée par l'application leed.
+En guise de remerciement nous avons tous les deux effectués une transaction d'un montant de 300 000 euros ce qui me semble convenable vu les tarifs habituels de timothé. ;) 
 
 ## Getting started
 
