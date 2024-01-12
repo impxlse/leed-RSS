@@ -67,6 +67,9 @@ RUN docker-php-ext-configure gd && docker-php-ext-install -j$(nproc) gd
 ## Lancement des conteneurs
 Concernant le lancement des conteneurs, cela se passe au niveau du fichier "docker-compose.yml" contrairement au Dockerfile qui va construire une image, docker-compose.yml lui va lancer des conteneur sur les images spécifiées avec les instruction fournies dans le fichier.
 
+## Persistance des données
+La création d'un volume dans le fichier docker-compose permet de stocker les données de la base de donnée du conteneur sur la machine hôte et ainsi rendre les données persistantes entre les exécutions du conteneur
+
 ## Variable d'environnement
 Il est recommandé d'utiliser des variables d'environnement dans le fichier docker-compose.yml.
 Ces variables sont misent dans le fichier .env au même endroti que le fichier docker-compose.yml
