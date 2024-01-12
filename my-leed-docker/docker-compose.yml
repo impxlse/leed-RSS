@@ -14,5 +14,9 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "mysql --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} < /dev/null"]
       retries: 10
+    volumes: 
+      - leed-db-data:/var/lib/mysql
     env_file:
       - .env 
+volumes:
+  leed-db-data:
