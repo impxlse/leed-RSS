@@ -3,8 +3,8 @@ services:
   leed-app:
     image: leed-php-apache 
     ports:
-      - "8080:80"
+      - "${PORT_WEB}:80"
   leed-database:
-    image: leed-database
-    ports:
-      - "3306:3306"
+    image: mysql:latest
+    env_file:
+      - .env 

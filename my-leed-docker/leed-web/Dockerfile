@@ -1,17 +1,19 @@
 # Utiliser l'image officielle PHP avec Apache
 FROM php:apache
 
-# Installez les dépendances nécessaires
-
-RUN apt update && \
-    apt install -y git && \
-    rm -rf /var/lib/apt/lists*
+# Installation des dépendances
+RUN apt-get update && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev
 
 # Clonez le depot Leed depuis GitHub
-RUN git clone https://github.com/LeedRSS/Leed /var/www/html/leed
+RUN curl -L -o v1.14.0.tar.gz https://github.com/LeedRSS/Leed/archive/refs/tags/v1.14.0.tar.gz && \
+    tar -xf v1.14.0.tar.gz -C /var/www/html --strip-components=1 && \
+    rm v1.14.0.tar.gz    
 
 # Autorisation nécessaire
-RUN chown -R www-data:www-data /var/www/html/leed
+RUN chown -R www-data:www-data /var/www/html
 
 # Port Expose
 EXPOSE 80
@@ -19,3 +21,7 @@ EXPOSE 80
 # Launch Apache
 CMD ["apache2-foreground"]
 
+# Activation de l'extension MySQLi
+RUN docker-php-ext-configure mysqli && docker-php-ext-install -j$(nproc) mysqli
+# Activation de l'extension GD pour PHP
+RUN docker-php-ext-configure gd && docker-php-ext-install -j$(nproc) gd
