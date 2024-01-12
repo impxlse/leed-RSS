@@ -26,3 +26,12 @@ CMD ["apache2-foreground"]
 RUN docker-php-ext-configure mysqli && docker-php-ext-install -j$(nproc) mysqli
 # Activation de l'extension GD pour PHP
 RUN docker-php-ext-configure gd && docker-php-ext-install -j$(nproc) gd
+
+# Copie du script d'initialisation de leed
+COPY init_leed.sh /usr/local/bin/
+
+# Droit d'exec pour l'exécution du script
+RUN chmod +x /usr/local/bin/init_leed.sh
+
+# Commande pour démarrer le script 
+ENTRYPOINT ["init_leed.sh"]
