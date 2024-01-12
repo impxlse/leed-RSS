@@ -79,13 +79,15 @@ on peut retrouver les variables d'environnement utilisé :
 ```
 # WEB
 PORT_WEB=8080
-
 # SQL
 PORT_DB=3306
 MYSQL_DATABASE=leeddb
 MYSQL_USER=leeduser
 MYSQL_PASSWORD=leedpwd
 MYSQL_ROOT_PASSWORD=rootpwd
+MYSQL_HOST=leed-database
+LEED_ADMIN_USER=root
+LEED_ADMIN_PASSWORD=root
 ```
 
 ## Source
