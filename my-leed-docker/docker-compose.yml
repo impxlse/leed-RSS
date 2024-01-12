@@ -1,10 +1,18 @@
 version: '3'
 services:
   leed-app:
-    image: leed 
+    build: leed-web
+    depends_on:
+      leed-database:
+        condition: service_healthy
     ports:
       - "${PORT_WEB}:80"
+    env_file:
+      - .env
   leed-database:
     image: mysql:latest
+    healthcheck:
+      test: ["CMD-SHELL", "mysql --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} < /dev/null"]
+      retries: 10
     env_file:
       - .env 
