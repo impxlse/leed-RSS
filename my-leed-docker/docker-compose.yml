@@ -1,7 +1,7 @@
 version: '3'
 services:
   leed-app:
-    image: leed-php-apache 
+    image: leed 
     ports:
       - "${PORT_WEB}:80"
   leed-database:
