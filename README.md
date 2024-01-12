@@ -1,91 +1,9 @@
 # Varcinv-Projet-Lead
 
-## Compte Rendu
 
-Dans ce compte Rendu, j'explique la démarche que j'ai adopté pour déployer l'application leed sur un server web accessible localement depuuis ma machine hôte
+## Comment utiliser ce projet
 
-## Dépendance de l'application Leed
-Avant de commencer à déployer l'application celle-ci necessite quelques dépendance à satisfaire.
 
-- Un server Apache
-- PHP avec une version 7.2 minimum
-- Une base de donnée MySQL
-
-## Structure de l'architecture
-Concernant l'infrastructure du projet nous allons obtenir :
-- Un server web
-- Un server de base de donnée
-
-les deux serveurs doivent pouvoir communiquer entre eux et donc se situer sur le meme réseau.
-
-## Build image
-J'utilise un Dockerfile pour build une image que je souhaite utiliser comme base pour mon server web.
-
-Tout d'abord, comme base d'image j'utilise php:apache
-qui pourra sastifaire facilement la version php requise ainsi que le service apache. 
-
-la version php sur l'image est la version PHP 8.3.0
-Pour que l'image contienne le code source de l'application Leed
-
-J'utilise ARG pour stocker le numero de version du code source pour qu'il soit modifier facilement quand de nouvel release sorte
-
-```
-ARG ver=1.14.0 
-```
-
-J'utilise curl pour récupérer l'archive la plus récente du projet puis je décompresse le projet dans le conteneu (Voir code ci-dessous).
-```
-RUN curl -L -o v1.14.0.tar.gz https://github.com/LeedRSS/Leed/archive/refs/tags/v1.14.0.tar.gz && \
-    tar -xf v1.14.0.tar.gz -C /var/www/html --strip-components=1 && \
-    rm v1.14.0.tar.gz 
-```
-Pour que le server soit correctement configuré nous avons besoin de donnée des autorisation adéquat à celui-ci 
-
-```
-RUN chown -R www-data:www-data /var/www/html
-```
-
-Ensuite j'expose le port 80 du conteneur
-
-```
-EXPOSE 80
-```
-Je lance ensuite apache en fond pour qu'il soit déja executé au lancement du conteneur
-
-```
-CMD ["apache2-foreground"]
-```
-
-enfin pour resoudre les erreur d'extension de MySQLi et GD pour PHP
-
-il faut les activer ce qui est fait à la fin de mon Dockerfile
-
-```
-RUN docker-php-ext-configure mysqli && docker-php-ext-install -j$(nproc) mysqli
-RUN docker-php-ext-configure gd && docker-php-ext-install -j$(nproc) gd
-```
-
-## Lancement des conteneurs
-Concernant le lancement des conteneurs, cela se passe au niveau du fichier "docker-compose.yml" contrairement au Dockerfile qui va construire une 
-
-## Variable d'environnement
-dans le fichier .env 
-on peut retrouver les variables d'environnement utilisé :
-```
-# WEB
-PORT_WEB=8080
-
-# SQL
-PORT_DB=3306
-MYSQL_DATABASE=leeddb
-MYSQL_USER=leeduser
-MYSQL_PASSWORD=leedpwd
-MYSQL_ROOT_PASSWORD=rootpwd
-```
-
-## Source
-Je remercie Timothé Taboada pour m'avoir aidé à comprendre comment réussir à effectuer une requete http pour remplir le formulaire demandée par l'application leed.
-En guise de remerciement nous avons tous les deux effectués une transaction d'un montant de 300 000 euros ce qui me semble convenable vu les tarifs habituels de timothé. ;) 
 
 ## Getting started
 
