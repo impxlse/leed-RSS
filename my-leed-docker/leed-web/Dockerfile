@@ -7,10 +7,11 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libpng-dev
 
+ARG ver=1.14.0
 # Clonez le depot Leed depuis GitHub
-RUN curl -L -o v1.14.0.tar.gz https://github.com/LeedRSS/Leed/archive/refs/tags/v1.14.0.tar.gz && \
-    tar -xf v1.14.0.tar.gz -C /var/www/html --strip-components=1 && \
-    rm v1.14.0.tar.gz    
+RUN curl -L -o source-code.tar.gz https://github.com/LeedRSS/Leed/archive/refs/tags/v${ver}.tar.gz && \
+    tar -xf source-code.tar.gz -C /var/www/html --strip-components=1 && \
+    rm source-code.tar.gz    
 
 # Autorisation nécessaire
 RUN chown -R www-data:www-data /var/www/html
