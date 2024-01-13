@@ -2,7 +2,7 @@
 
 
 ## Comment utiliser ce projet
-Ce projet vous permet de déployer l'application Leed rapidement et facilement à l'aide de Docker. Suivez les instructions ci-dessous pour configurer et lancer votre propre instance Leed.
+Ce projet vous permet de déployer l'application Leed rapidement et facilement à l'aide de Docker. Suivez les instructions ci-dessous pour configurer et lancer votre propre instance Leed. Ce projet est basé sur le code source de [Leed](https://github.com/LeedRSS/Leed), une application de flux RSS.
 
 ## Instructions de deploiement rapide
 Suivez ces étapes simples pour déployer Leed sur votre machine.
@@ -23,6 +23,7 @@ Exécutez la commande suivante dans le dossier my-leed-docker :
 docker-compose up
 ```
 **Note**: Cette commande doit être exécuté dans le dossier "my-leed-docker", endroit où se situe le fichier docker-compose.yml
+
 4. Accédez à Leed
 * Ouvrez votre navigateur et accédez à http://localhost:8080 (ou le port spécifié dans votre fichier .env).
 
