@@ -9,6 +9,7 @@ services:
       - "${PORT_WEB}:80"
     env_file:
       - .env
+    command: /bin/bash -c "rm /var/www/html/install.php && exec apache2-foreground"
   leed-database:
     image: mysql:latest
     healthcheck:
