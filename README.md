@@ -10,12 +10,14 @@ Dans ce fichier vous trouverez les informations sur le déploiement de l'applica
 1. Prérequis
 * Docker doit être installé sur votre machine
 2. Clonez le repository
-```git clone https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info-stud/2023-s5/r5-adv-virt/grp-b1/varcinv/varcinv-projet-lead.git
+```
+git clone https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info-stud/2023-s5/r5-adv-virt/grp-b1/varcinv/varcinv-projet-lead.git
 ```
 3. Modifier les variables d'environnement selon vos besoins (voir section "Variable environnement")
 * fichier .env à modifier
 4. Déployer l'application
-``` docker-compose up
+```
+docker-compose up
 ```
 5. Accédez à Leed
 * Ouvrez votre navigateur et accédez à http://localhost:8080 (ou le port spécifié dans votre fichier .env).
