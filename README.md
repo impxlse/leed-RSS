@@ -14,16 +14,17 @@ Dans ce fichier vous trouverez les informations sur le déploiement de l'applica
 git clone https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info-stud/2023-s5/r5-adv-virt/grp-b1/varcinv/varcinv-projet-lead.git
 ```
 3. Modifier les variables d'environnement selon vos besoins (voir section "Variable environnement")
-* fichier .env à modifier
+* fichier .env à modifier situé dans le dossier "my-leed-docker"
 4. Déployer l'application
 ```
 docker-compose up
 ```
+**Note** cette commande doit être exécuté dans le dossier "my-leed-docker", endroit où se situe le fichier docker-compose.yml
 5. Accédez à Leed
 * Ouvrez votre navigateur et accédez à http://localhost:8080 (ou le port spécifié dans votre fichier .env).
 
 ## Variable environnement
-Dans le dossier my-leed-docker se trouve le fichier .env qui contient toute les variables d'environnement utiliser par docker-compose. Pour Effectuer des modifications au conteneur lancer par docker-compose il faut modifier les valeurs des variables dans le .env
+Dans le dossier my-leed-docker se trouve le fichier .env qui contient toute les variables d'environnement utiliser par docker-compose. Pour Effectuer des modifications au lancement des conteneur, il faut modifier les valeurs des variables dans le fichier .env
 
 Description des variables :
 
