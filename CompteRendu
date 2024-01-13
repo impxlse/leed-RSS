@@ -7,26 +7,28 @@ Compte Rendu de projet
 Dans ce compte rendu, je vais expliquer la démarche que j'ai adopté pour déployer l'application leed.
 
 ## Dépendance de l'application Leed
-Avant de commencer à déployer l'application celle-ci necessite quelques dépendance à satisfaire.
-- Un server Apache (conseillé)
-- PHP avec une version 7.2 minimum
-- Une base de donnée MySQL
+Avant de commencer à déployer l'application celle-ci necessite quelques dépendances à satisfaire.
+- "Un serveur Apache" (conseillé)
+- "PHP avec une version 7.2 minimum"
+- "Une base de donnée MySQL"
 
 ## Structure de l'architecture
 Concernant l'infrastructure, nous aurons deux conteneurs un qui jouera le rôle du serveur web et le second qui sera le serveur de base de donnée
 
 les deux serveurs doivent pouvoir communiquer entre eux, ils sont donc situés sur le mème réseau.
+Cela est fait dans mon docker-compose où les deux services partagent le même contexte, docker-compose les places par défaut dans un réseau commun
 
 ## Construction de l'image du serveur web
-Pour cela, il faut créer un Dockerfile pour construire une image qui réponde à mes besoins.
+j'ai besoin de créer une image spécifique à mes besoins,
+C'est pour cela, que je crée un Dockerfile pour construire une image.
 
 Tout d'abord, comme base d'image j'utilise php:apache,
 qui satisfait les prérequis sur la version php requise ainsi que le service apache. 
 
 La version php sur l'image est la version PHP 8.3.0.
 
-Pour que l'image contienne le code source de l'application Leed
-J'utilise ARG pour stocker le numero de version du code source afin qu'il puisse modifié facilement quand de nouvel release seront disponible.
+L'image a besoin de contenir le code source de l'application Leed présent dans le github, je récupère le code source avec une requete curl puis je decompresse l'archive.
+J'ai ajouter une variable d'environnement nommé "ver" pour facilement modifié la version que l'on souhaite du code source quand de nouvelle release seront disponible.
 
 ```
 ARG ver=1.14.0 
@@ -55,9 +57,9 @@ Je lance ensuite apache en fond pour qu'il soit déja executé au lancement du c
 CMD ["apache2-foreground"]
 ```
 
-enfin pour resoudre les erreur d'extension de MySQLi et GD pour PHP
+Enfin pour resoudre les erreur d'extension de MySQLi et GD pour PHP
 
-il faut les activer ce qui est fait à la fin de mon Dockerfile
+Il faut les activer ce qui est fait à la fin de mon Dockerfile
 
 ```
 RUN docker-php-ext-configure mysqli && docker-php-ext-install -j$(nproc) mysqli
@@ -68,11 +70,11 @@ RUN docker-php-ext-configure gd && docker-php-ext-install -j$(nproc) gd
 Concernant le lancement des conteneurs, cela se passe au niveau du fichier "docker-compose.yml" contrairement au Dockerfile qui va construire une image, docker-compose.yml lui va lancer des conteneur sur les images spécifiées avec les instruction fournies dans le fichier.
 
 ## Persistance des données
-La création d'un volume dans le fichier docker-compose permet de stocker les données de la base de donnée du conteneur sur la machine hôte et ainsi rendre les données persistantes entre les exécutions du conteneur
+La création d'un volume dans le fichier docker-compose permet de stocker les données de la base de donnée du conteneur sur la machine hôte et ainsi rendre les données persistantes entre les exécutions du conteneur.
 
 ## Variable d'environnement
 Il est recommandé d'utiliser des variables d'environnement dans le fichier docker-compose.yml.
-Ces variables sont misent dans le fichier .env au même endroti que le fichier docker-compose.yml
+Ces variables sont misent dans le fichier .env au même endroit que le fichier docker-compose.yml
 
 on peut retrouver les variables d'environnement utilisé :
 
@@ -89,8 +91,20 @@ MYSQL_HOST=leed-database
 LEED_ADMIN_USER=root
 LEED_ADMIN_PASSWORD=root
 ```
+## Automatisation de l'installation
+Au lancement des conteneurs un script est utilisé pour initialiser la configuration de l'application en faisant une requête http.
+Ce qui nous permet d'accéder directement à la page de connexion de l'application Leed à chaque éxécution des conteneurs.
+
+Une fois les conteneurs lancé le fichier install.php est supprimé car il peut représenter un risque de sécurité.
+"Une fois l'installation terminée, supprimez le fichier install.php par mesure de sécurité." [https://github.com/LeedRSS/Leed]
 
 ## Source
+Code source du projet
+https://github.com/LeedRSS/Leed
+
+Solution concernant le problème d'activation de l'extension mysqli
+https://github.com/docker-library/php/issues/391
+
 Je remercie Timothé Taboada pour m'avoir aidé à comprendre comment réussir à effectuer une requete http pour remplir le formulaire demandée par l'application leed.
-En guise de remerciement j'ai effectué une transaction d'un montant de 300 000 euros vers timothé, ce qui me semble convenablevu les tarifs habituels de timothé. ;) 
+En guise de remerciement j'ai effectué une transaction d'un montant de 300 000 euros vers timothé, ce qui me semble convenable vu les tarifs habituels de timothé. ;) 
 
