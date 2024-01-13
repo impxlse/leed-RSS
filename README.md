@@ -2,25 +2,28 @@
 
 
 ## Comment utiliser ce projet
-Dans ce fichier vous trouverez les informations sur le déploiement de l'application leed.
-
-## Configuration minimale
+Ce projet vous permet de déployer l'application Leed rapidement et facilement à l'aide de Docker. Suivez les instructions ci-dessous pour configurer et lancer votre propre instance Leed.
 
 ## Instructions de deploiement rapide
-1. Prérequis
+Suivez ces étapes simples pour déployer Leed sur votre machine.
+
+### Prérequis
 * Docker doit être installé sur votre machine
-2. Clonez le repository
-```
+
+1. Clonez le repository
+```bash
 git clone https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info-stud/2023-s5/r5-adv-virt/grp-b1/varcinv/varcinv-projet-lead.git
 ```
-3. Modifier les variables d'environnement selon vos besoins (voir section "Variable environnement")
+2. Modifier les variables d'environnement selon vos besoins (voir section "Variable environnement")
 * fichier .env à modifier situé dans le dossier "my-leed-docker"
-4. Déployer l'application
+
+3. Déployer l'application
+Exécutez la commande suivante dans le dossier my-leed-docker :
 ```
 docker-compose up
 ```
-**Note** cette commande doit être exécuté dans le dossier "my-leed-docker", endroit où se situe le fichier docker-compose.yml
-5. Accédez à Leed
+**Note**: Cette commande doit être exécuté dans le dossier "my-leed-docker", endroit où se situe le fichier docker-compose.yml
+4. Accédez à Leed
 * Ouvrez votre navigateur et accédez à http://localhost:8080 (ou le port spécifié dans votre fichier .env).
 
 ## Variable environnement
