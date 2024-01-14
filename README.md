@@ -39,10 +39,10 @@ Suivez ces étapes simples pour déployer Leed sur votre machine.
 git clone https://gricad-gitlab.univ-grenoble-alpes.fr/iut2-info-stud/2023-s5/r5-adv-virt/grp-b1/varcinv/varcinv-projet-lead.git
 ```
 2. Modifier les variables d'environnement selon vos besoins (voir section "Variable environnement")
-* fichier .env à modifier situé dans le dossier "my-leed-docker"
+* Fichier .env à modifier situé dans le dossier "my-leed-docker"
 
 3. Déployer l'application
-Exécutez la commande suivante dans le dossier my-leed-docker :
+* Exécutez la commande suivante dans le dossier my-leed-docker :
 ```
 docker-compose up
 ```
