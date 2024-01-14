@@ -4,6 +4,30 @@
 ## Comment utiliser ce projet
 Ce projet vous permet de déployer l'application Leed rapidement et facilement à l'aide de Docker. Suivez les instructions ci-dessous pour configurer et lancer votre propre instance Leed. Ce projet est basé sur le code source de [Leed](https://github.com/LeedRSS/Leed), une application de flux RSS.
 
+## Configuration minimale
+
+Assurez-vous d'avoir les éléments suivants installés sur votre machine avant de commencer :
+
+- Docker
+
+Si vous n'avez pas déjà téléchargé l'image MySQL, vous pouvez le faire en utilisant la commande suivante :
+
+```bash
+docker pull mysql:latest
+```
+
+## Espace de stockage
+
+Voici l'espace de stockage utilisé par le projet :
+
+- **Leed App Image**: Environ 540 MB
+- **MySQL Database Image**: Environ 619 MB
+
+**Espace de stockage total utilisé**: Environ 1159 MB
+
+**Notez** : Ces valeurs varient en fonction des versions des images Docker utilisées et des données spécifiques à votre application Leed.
+
+
 ## Instructions de deploiement rapide
 Suivez ces étapes simples pour déployer Leed sur votre machine.
 
