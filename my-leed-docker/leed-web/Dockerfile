@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 ARG ver=1.14.0
 ARG DEV=0
-# Clonez le depot Leed depuis GitHub
+# Récupération du code source du depot Leed depuis GitHub
 RUN curl -L -o source-code.tar.gz https://github.com/LeedRSS/Leed/archive/refs/tags/v${ver}.tar.gz && \
     tar -xf source-code.tar.gz -C /var/www/html --strip-components=1 && \
     rm source-code.tar.gz    
