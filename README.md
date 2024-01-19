@@ -1,4 +1,4 @@
-# Varcinv-Projet-Lead
+# Deploiement Leed
 
 
 ## Comment utiliser ce projet
@@ -82,3 +82,33 @@ Description des variables :
 
     LEED_ADMIN_PASSWORD=root :
         Mot de passe de l'utilisateur administrateur pour l'interface d'administration de Leed.
+
+
+## Modes d'Exécution
+
+L'application Leed peux être lancer en choisissant deux modes d'application : `dev` et `prod`.
+
+- **dev**: Ce mode est destinée au développement. Elle inclut des outils supplémentaires tels que xdebug pour faciliter le débogage et l'inspection du code.
+
+- **prod**: `Prod` est optimisée pour le déploiement en production. Elle exclut les outils de développement supplémentaires.
+
+### Xdebug
+
+[Xdebug](https://xdebug.org/) est un outil de débogage et de profilage pour PHP. Il fournit des fonctionnalités telles que le suivi des erreurs, le profilage du code, et l'inspection des variables pour aider les développeurs à identifier et résoudre les problèmes plus efficacement.
+
+### Lancement en Mode Développement
+
+Pour lancer l'application en mode développement, utilisez la commande suivante :
+
+```bash
+docker-compose build --build-arg DEV=1
+```
+La commande docker-compose va créer une nouvelle image contenant le package Xdebug sur laquelle se baser.
+
+Pour lancer l'application en mode Production
+
+``` bash
+docker-compose up -d
+```
+il suffit de lancer les conteneurs avec docker-compose, ce qui va créer l'image sans le package Xdebug
+
