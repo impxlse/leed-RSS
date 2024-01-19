@@ -89,9 +89,8 @@ on peut retrouver les variables d'environnement utilisé dans le fichier .env :
 
 ```
 # WEB
-PORT_WEB=8080
+PORT_WEB=4269
 # SQL
-PORT_DB=3306
 MYSQL_DATABASE=leeddb
 MYSQL_USER=leeduser
 MYSQL_PASSWORD=leedpwd
@@ -124,7 +123,7 @@ Une fois les conteneurs lancé le fichier install.php est supprimé car il peut 
 command: /bin/bash -c "rm /var/www/html/install.php && exec apache2-foreground"
 ```
 
-concernant la possibilité de lancer le conteneur web en mode dev 
+Concernant la possibilité de lancer le conteneur web en mode developpement 
 je le fait à l'aide de cette commande :
 
 ```
