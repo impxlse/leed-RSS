@@ -49,18 +49,15 @@ docker-compose up
 **Note**: Cette commande doit être exécuté dans le dossier "my-leed-docker", endroit où se situe le fichier docker-compose.yml
 
 4. Accédez à Leed
-* Ouvrez votre navigateur et accédez à http://localhost:8080 (ou le port spécifié dans votre fichier .env).
+* Ouvrez votre navigateur et accédez à http://localhost:4269 (ou le port spécifié dans votre fichier .env).
 
 ## Variable environnement
 Dans le dossier my-leed-docker se trouve le fichier .env qui contient toute les variables d'environnement utiliser par docker-compose. Pour Effectuer des modifications au lancement des conteneur, il faut modifier les valeurs des variables dans le fichier .env
 
 Description des variables :
 
-    PORT_WEB=8080 :
-        Port sur lequel le serveur web Leed sera exposé. Vous pouvez accéder à Leed en utilisant l'adresse http://localhost:8080 si vous exécutez localement.
-
-    PORT_DB=3306 :
-        Port sur lequel le serveur MySQL (base de données) sera exposé. Il est utilisé pour établir une connexion entre le serveur web Leed et la base de données.
+    PORT_WEB=4269 :
+        Port sur lequel le serveur web Leed sera exposé. Vous pouvez accéder à Leed en utilisant l'adresse http://localhost:4269 si vous exécutez localement.
 
     MYSQL_DATABASE=leeddb :
         Nom de la base de données MySQL que Leed utilisera pour stocker ses données.

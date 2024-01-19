@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev
 
 ARG ver=1.14.0
+ARG DEV=0
 # Clonez le depot Leed depuis GitHub
 RUN curl -L -o source-code.tar.gz https://github.com/LeedRSS/Leed/archive/refs/tags/v${ver}.tar.gz && \
     tar -xf source-code.tar.gz -C /var/www/html --strip-components=1 && \
@@ -30,8 +31,13 @@ RUN docker-php-ext-configure gd && docker-php-ext-install -j$(nproc) gd
 # Copie du script d'initialisation de leed
 COPY init_leed.sh /usr/local/bin/
 
+RUN if [ "$DEV" = 1 ]; then \
+        pecl install xdebug && docker-php-ext-enable xdebug; \
+    fi
+
 # Droit d'exec pour l'exécution du script
 RUN chmod +x /usr/local/bin/init_leed.sh
 
 # Commande pour démarrer le script 
 ENTRYPOINT ["init_leed.sh"]
+
